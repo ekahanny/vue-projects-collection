@@ -1,16 +1,15 @@
 <template>
-  <form class="row g-1">
-    <div class="col-9">
+  <form class="d-flex justify-content-center align-items-center mb-4">
+    <div class="form-outline flex-fill">
       <input
         type="text"
+        id="addTask"
         class="form-control"
-        id="newTask"
         placeholder="Add New Task..."
+        required
       />
     </div>
-    <div class="col">
-      <button type="submit" class="btn btn-primary">+</button>
-    </div>
+    <button type="submit" class="btn btn-info ms-2">+</button>
   </form>
 </template>
 

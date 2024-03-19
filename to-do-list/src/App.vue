@@ -1,27 +1,33 @@
 <template>
-  <h1 class="mt-5">TO DO LIST</h1>
-  <ToDoForm></ToDoForm>
+  <div class="container h-100">
+    <div class="row d-flex justify-content-center align-items-center h-100">
+      <div class="col col-xl-10">
+        <div class="card">
+          <div class="card-body p-5">
+            <h1 class="text-center">TO DO LIST</h1>
+            <ToDoForm></ToDoForm>
+            <ActiveList></ActiveList>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 </template>
 
 <script>
 import ToDoForm from "./components/ToDoForm.vue";
+import ActiveList from "./components/ActiveList.vue";
 
 export default {
   name: "App",
   components: {
-    // HelloWorld,
     ToDoForm,
+    ActiveList,
   },
 };
 </script>
 
 <style>
-body {
-  min-height: 100vh;
-  display: flex;
-  justify-content: center;
-}
-
 h1 {
   font-family: "Newsreader", serif;
 }
