@@ -5,8 +5,13 @@
         <div class="card">
           <div class="card-body p-5">
             <h1 class="text-center">TO DO LIST</h1>
-            <ToDoForm></ToDoForm>
-            <ActiveList></ActiveList>
+            <!-- menjalankan event/emit -->
+            <ToDoForm @newToDo="handleNewToDo" />
+            <ActiveList
+              v-for="todo in todoList"
+              :key="todo.id"
+              :todo="todo"
+            ></ActiveList>
           </div>
         </div>
       </div>
@@ -23,6 +28,18 @@ export default {
   components: {
     ToDoForm,
     ActiveList,
+  },
+  data() {
+    return {
+      todoList: [],
+    };
+  },
+  methods: {
+    // method yang akan dijalankan ketika emit newToDo berlangsung
+    handleNewToDo: function (ToDo) {
+      this.todoList.push(ToDo);
+      console.log(this.todoList);
+    },
   },
 };
 </script>

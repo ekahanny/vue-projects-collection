@@ -5,7 +5,7 @@
       style="background-color: #f4f6f7"
     >
       <input class="form-check-input me-1" type="checkbox" value="" checked />
-      <p class="m-2">Task 1</p>
+      <p class="m-2">{{ todo.task }}</p>
     </li>
   </ul>
 </template>
@@ -13,5 +13,11 @@
 <script>
 export default {
   name: "ActiveList",
+  props: {
+    todo: {
+      type: Object,
+      required: true,
+    },
+  },
 };
 </script>
