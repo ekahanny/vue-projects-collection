@@ -34,6 +34,7 @@ export default {
       this.$emit("newToDo", {
         task: this.task,
         id: `$todo_${Math.random() * 1000}`,
+        isCompleted: false,
       });
     },
   },

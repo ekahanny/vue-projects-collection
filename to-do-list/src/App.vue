@@ -11,6 +11,7 @@
               v-for="todo in todoList"
               :key="todo.id"
               :todo="todo"
+              @onToggleIsCompleted="handleToggleIsChecked"
             ></ActiveList>
           </div>
         </div>
@@ -38,7 +39,16 @@ export default {
     // method yang akan dijalankan ketika emit newToDo berlangsung
     handleNewToDo: function (ToDo) {
       this.todoList.push(ToDo);
+    },
+    handleToggleIsChecked: function ({ value, id }) {
+      console.log(value, id);
+      const todo = this.findTodo(id);
+      todo.isCompleted = value;
+
       console.log(this.todoList);
+    },
+    findTodo(id) {
+      return this.todoList.find((todo) => todo.id === id);
     },
   },
 };
