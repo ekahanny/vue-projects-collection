@@ -14,6 +14,7 @@
               @onToggleIsCompleted="handleToggleIsChecked"
               @onToggleEdit="handleToggleEdit"
               @updateToDo="handleUpdateToDo"
+              @onRemoveTodo="handleRemoveTodo"
             ></ActiveList>
           </div>
         </div>
@@ -47,6 +48,12 @@ export default {
     },
     findTodo(id) {
       return this.todoList.find((todo) => todo.id === id);
+    },
+    handleRemoveTodo: function (id) {
+      const confirm = window.confirm("You sure to delete this?");
+      if (confirm) {
+        this.todoList = this.todoList.filter((todo) => todo.id !== id);
+      }
     },
     handleToggleEdit: function (id) {
       const todo = this.findTodo(id);

@@ -15,7 +15,9 @@
           <button @click="toggleEdit" class="btn btn-sm btn-secondary ms-auto">
             Edit
           </button>
-          <button class="btn btn-sm btn-danger ms-2">Hapus</button>
+          <button @click="removeTodo" class="btn btn-sm btn-danger ms-2">
+            Hapus
+          </button>
         </li>
       </ul>
     </div>
@@ -66,6 +68,9 @@ export default {
     },
     toggleEdit: function () {
       this.$emit("onToggleEdit", this.todo.id);
+    },
+    removeTodo: function () {
+      this.$emit("onRemoveTodo", this.todo.id);
     },
   },
 };
