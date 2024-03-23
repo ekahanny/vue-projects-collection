@@ -1,22 +1,43 @@
 <template>
-  <ul class="list-group mb-0">
-    <li
-      class="list-group-item d-flex align-items-center border-0 mb-2 rounded"
-      style="background-color: #f4f6f7"
-    >
-      <input
-        class="form-check-input me-1"
-        type="checkbox"
-        v-model="isCompleted"
+  <div>
+    <div v-if="!editMode">
+      <ul class="list-group mb-0">
+        <li
+          class="list-group-item d-flex align-items-center border-0 mb-2 rounded"
+          style="background-color: #f4f6f7"
+        >
+          <input
+            class="form-check-input me-1"
+            type="checkbox"
+            v-model="isCompleted"
+          />
+          <p class="m-2 flex-grow-1">{{ todo.task }}</p>
+          <button @click="toggleEdit" class="btn btn-sm btn-secondary ms-auto">
+            Edit
+          </button>
+          <button class="btn btn-sm btn-danger ms-2">Hapus</button>
+        </li>
+      </ul>
+    </div>
+
+    <div v-else>
+      <ToDoForm
+        :todo="todo"
+        :isEditMode="true"
+        @updateToDo="handleUpdateToDo"
       />
-      <p class="m-2">{{ todo.task }}</p>
-    </li>
-  </ul>
+    </div>
+  </div>
 </template>
 
 <script>
+import ToDoForm from "./ToDoForm.vue";
+
 export default {
   name: "ActiveList",
+  components: {
+    ToDoForm,
+  },
   props: {
     todo: {
       type: Object,
@@ -29,17 +50,22 @@ export default {
         return this.todo.isCompleted;
       },
       set(value) {
-        // console.log(value);
         this.$emit("onToggleIsCompleted", {
           value,
           id: this.todo.id,
         });
       },
     },
+    editMode: function () {
+      return this.todo.editMode;
+    },
   },
   methods: {
-    toggleIsCompleted(event) {
-      console.log.apply(event.target.value);
+    handleUpdateToDo: function (updatedTodo) {
+      this.$emit("updateToDo", updatedTodo);
+    },
+    toggleEdit: function () {
+      this.$emit("onToggleEdit", this.todo.id);
     },
   },
 };

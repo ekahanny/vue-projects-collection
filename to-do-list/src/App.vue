@@ -12,6 +12,8 @@
               :key="todo.id"
               :todo="todo"
               @onToggleIsCompleted="handleToggleIsChecked"
+              @onToggleEdit="handleToggleEdit"
+              @updateToDo="handleUpdateToDo"
             ></ActiveList>
           </div>
         </div>
@@ -36,19 +38,27 @@ export default {
     };
   },
   methods: {
-    // method yang akan dijalankan ketika emit newToDo berlangsung
     handleNewToDo: function (ToDo) {
       this.todoList.push(ToDo);
     },
     handleToggleIsChecked: function ({ value, id }) {
-      console.log(value, id);
       const todo = this.findTodo(id);
       todo.isCompleted = value;
-
-      console.log(this.todoList);
     },
     findTodo(id) {
       return this.todoList.find((todo) => todo.id === id);
+    },
+    handleToggleEdit: function (id) {
+      const todo = this.findTodo(id);
+      todo.editMode = !todo.editMode;
+    },
+    handleUpdateToDo: function (updatedTodo) {
+      this.todoList = this.todoList.map((todo) => {
+        if (todo.id === updatedTodo.id) {
+          return updatedTodo;
+        }
+        return todo;
+      });
     },
   },
 };

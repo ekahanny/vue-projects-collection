@@ -13,7 +13,9 @@
         v-model="task"
       />
     </div>
-    <button type="submit" class="btn btn-info ms-2">+</button>
+    <button type="submit" class="btn btn-info ms-2">
+      {{ isEditMode ? "Edit" : "+" }}
+    </button>
   </form>
 </template>
 
@@ -25,16 +27,46 @@ export default {
       task: "",
     };
   },
+  props: {
+    todo: {
+      type: Object,
+      default: () => ({}),
+    },
+    isEditMode: {
+      type: Boolean,
+      default: false,
+    },
+  },
+  created() {
+    if (this.isEditMode) {
+      this.task = this.todo.task;
+    }
+  },
   methods: {
     submit: function () {
-      this.emitToDo();
+      if (this.isEditMode) {
+        this.emitUpdateToDo();
+      } else {
+        this.emitToDo();
+      }
+      this.task = "";
     },
-    // method utk memanggil emit bernama newToDo
+    emitUpdateToDo: function () {
+      // Mengubah emit ke updateToDo agar sesuai dengan penanganannya di ActiveList.vue
+      this.$emit("updateToDo", {
+        task: this.task,
+        id: this.todo.id,
+        isCompleted: this.todo.isCompleted,
+        editMode: false, // Mengubah mode edit kembali menjadi false setelah diubah
+      });
+    },
     emitToDo: function () {
+      // Mengubah emit ke newToDo agar sesuai dengan penanganannya di App.vue
       this.$emit("newToDo", {
         task: this.task,
         id: `$todo_${Math.random() * 1000}`,
         isCompleted: false,
+        editMode: false,
       });
     },
   },
