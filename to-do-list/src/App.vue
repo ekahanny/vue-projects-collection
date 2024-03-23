@@ -5,6 +5,9 @@
         <div class="card">
           <div class="card-body p-5">
             <h1 class="text-center">TO DO LIST</h1>
+            <p v-if="completedTodos > 0" class="text-center">
+              Completed Todos: {{ completedTodos }}
+            </p>
             <!-- menjalankan event/emit -->
             <ToDoForm @newToDo="handleNewToDo" />
             <ActiveList
@@ -37,6 +40,11 @@ export default {
     return {
       todoList: [],
     };
+  },
+  computed: {
+    completedTodos: function () {
+      return this.todoList.filter((todo) => todo.isCompleted).length;
+    },
   },
   methods: {
     handleNewToDo: function (ToDo) {
