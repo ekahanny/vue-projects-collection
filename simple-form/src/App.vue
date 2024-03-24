@@ -5,13 +5,15 @@
         <div class="card my-4">
           <div class="card-body pt-5 px-5 pb-2">
             <h1 class="text-center">Simple Form</h1>
-            <FormData />
+            <!-- Step 5 : Menginisiasi emit yang telah dibuat pada component sebelumnya -->
+            <FormData @emitSubmitForm="handleSubmitForm" />
           </div>
         </div>
 
         <div class="card">
           <div class="card-body p-5">
-            <FormResult />
+            <!-- Step 8 : Mengirim formData menuju component FormResult untuk ditampilkan -->
+            <FormResult :formData="formData" />
           </div>
         </div>
       </div>
@@ -28,6 +30,22 @@ export default {
   components: {
     FormData,
     FormResult,
+  },
+  /* Step 6 : Menginisiasi formData untuk menyimpan data
+    yg akan dipassing dari component sebelumnya (FormData)
+    menuju component selanjutnya (FormResult) */
+  data() {
+    return {
+      formData: {},
+    };
+  },
+  methods: {
+    /* Step 7 : Membuat method yang akan dijalankan ketika
+       emit berlangsung, data dari emit tsb akan disimpan
+       kedalam property formData */
+    handleSubmitForm: function (formData) {
+      this.formData = formData;
+    },
   },
 };
 </script>
