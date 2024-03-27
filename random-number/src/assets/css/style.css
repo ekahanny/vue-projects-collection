@@ -1,0 +1,91 @@
+@import url("https://fonts.googleapis.com/css2?family=Montserrat&family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,300;1,400;1,500;1,600;1,700;1,800&display=swap");
+
+html,
+body {
+  padding: 0;
+  margin: 0;
+  font-family: "Montserrat", sans-serif;
+  font-family: "Open Sans", sans-serif;
+}
+
+#app {
+  display: flex;
+  flex-direction: row;
+}
+
+button.start {
+  padding: 10px;
+  border-radius: 15px;
+  border-width: medium;
+  width: 100px;
+}
+
+.number {
+  font-size: 8rem;
+  padding: 20px;
+}
+
+.input-box {
+  /* border: none; */
+  width: 180px;
+  height: 90px;
+  font-size: 8rem;
+  padding: 20px;
+  text-align: center;
+  margin-bottom: 25px;
+  border-top: none;
+  border-left: none;
+  border-right: none;
+  /* border-color: aqua; */
+}
+
+.counter {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.hasil {
+  display: flex;
+  flex-direction: column;
+  justify-items: stretch;
+  border-left: 1px solid gray;
+  padding: 0 5px;
+}
+
+.list {
+  overflow: auto;
+}
+
+.item {
+  padding: 5px;
+  margin: 5px 5px 5px 0;
+  border: 1px solid #e2e2e2;
+  border-radius: 5px;
+}
+
+/* small */
+@media (max-width: 575.98px) {
+  #app {
+    flex-direction: column;
+  }
+  .hasil {
+    margin-top: 20px;
+    padding-top: 10px;
+    border-top: 1px solid gray;
+  }
+}
+
+@media (min-width: 576px) {
+  .counter {
+    height: 100vh;
+    width: 80%;
+    justify-content: center;
+  }
+
+  .hasil {
+    width: 20%;
+    height: 100vh;
+    overflow: hidden;
+  }
+}
