@@ -6,7 +6,7 @@
   <div class="hasil">
     <div>Hasil</div>
     <div class="list">
-      <div class="item">Status: {{ status }}</div>
+      <div class="item">Hasil : {{ number }}</div>
     </div>
   </div>
 </template>
@@ -17,23 +17,12 @@ export default {
   data() {
     return {
       number: 0,
-      status: "", // Menambahkan properti status
     };
   },
   methods: {
     generateNumber: function () {
       let randomNumber = Math.floor(Math.random() * 100);
-      if (this.number > randomNumber) {
-        this.status = "Tebakanmu terlalu besar!"; // Mengatur status tebakan
-      } else if (this.number < randomNumber) {
-        this.status = "Tebakanmu terlalu kecil!"; // Mengatur status tebakan
-      } else if (this.number === randomNumber) {
-        this.status = "Tebakanmu benar!"; // Mengatur status tebakan
-      }
-
-      setTimeout(() => {
-        this.status = "";
-      }, 2000);
+      this.number = randomNumber;
     },
   },
 };
