@@ -30,7 +30,6 @@ export default {
   },
   methods: {
     handleSubmitForm: function (inputNama) {
-      console.log(inputNama);
       this.nameOfUsers.firstName = inputNama.firstName;
       this.nameOfUsers.middleName = inputNama.middleName;
       this.nameOfUsers.lastName = inputNama.lastName;

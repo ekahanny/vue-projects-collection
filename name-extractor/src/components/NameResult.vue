@@ -1,5 +1,5 @@
 <template>
-  <h2 class="alert alert-success text-center">
+  <h2 class="alert alert-success text-center" v-if="userData.firstName">
     Selamat Datang {{ userData.firstName }}, Senang Anda Dapat Bergabung!
   </h2>
   <b class="text-warning badge badge-dark"> Hasil Ekstrak Nama Anda : </b>
