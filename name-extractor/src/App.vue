@@ -4,9 +4,9 @@
     <p class="text-center">
       Name Etractor adalah program pengekstrak nama otomatis
     </p>
-    <InputUser />
+    <InputUser @emitSubmitForm="handleSubmitForm" />
     <br />
-    <NameResult />
+    <NameResult :userData="nameOfUsers" />
   </div>
 </template>
 
@@ -18,6 +18,23 @@ export default {
   components: {
     InputUser,
     NameResult,
+  },
+  data() {
+    return {
+      nameOfUsers: {
+        firstName: "",
+        middleName: "",
+        lastName: "",
+      },
+    };
+  },
+  methods: {
+    handleSubmitForm: function (inputNama) {
+      console.log(inputNama);
+      this.nameOfUsers.firstName = inputNama.firstName;
+      this.nameOfUsers.middleName = inputNama.middleName;
+      this.nameOfUsers.lastName = inputNama.lastName;
+    },
   },
 };
 </script>
