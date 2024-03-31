@@ -26,13 +26,13 @@ export default {
   methods: {
     submit: function () {
       let fullName = this.inputNama.nama.split(" ");
-      this.inputNama.firstName = fullName[0];
-      for (let i = 1; i < fullName.length - 1; i++) {
-        this.inputNama.middleName += fullName[i] + " ";
-      }
-      this.inputNama.lastName = fullName[fullName.length - 1];
+      this.inputNama.firstName = fullName.shift();
+      this.inputNama.lastName = fullName.pop();
+      this.inputNama.middleName = fullName.join(" ");
 
       this.$emit("emitSubmitForm", this.inputNama);
+
+      this.inputNama.nama = "";
     },
   },
 };
