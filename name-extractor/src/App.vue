@@ -6,7 +6,7 @@
     </p>
     <InputUser @emitSubmitForm="handleSubmitForm" />
     <br />
-    <NameResult :userData="nameOfUsers" />
+    <NameResult :userData="inputNama" />
   </div>
 </template>
 
@@ -21,18 +21,20 @@ export default {
   },
   data() {
     return {
-      nameOfUsers: {
-        firstName: "",
-        middleName: "",
-        lastName: "",
-      },
+      // nameOfUsers: {
+      //   firstName: "",
+      //   middleName: "",
+      //   lastName: "",
+      // },
+      inputNama: {},
     };
   },
   methods: {
     handleSubmitForm: function (inputNama) {
-      this.nameOfUsers.firstName = inputNama.firstName;
-      this.nameOfUsers.middleName = inputNama.middleName;
-      this.nameOfUsers.lastName = inputNama.lastName;
+      // this.nameOfUsers.firstName = inputNama.firstName;
+      // this.nameOfUsers.middleName = inputNama.middleName;
+      // this.nameOfUsers.lastName = inputNama.lastName;
+      this.inputNama = inputNama;
     },
   },
 };
