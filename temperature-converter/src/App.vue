@@ -16,7 +16,7 @@
       <div class="col-md-9">
         <div class="card border border-warning">
           <div class="card-body py-4">
-            <CardComponent />
+            <CardComponent @emitSubmit="handleEmitSubmit" />
           </div>
         </div>
 
@@ -38,6 +38,20 @@ export default {
   name: "App",
   components: {
     CardComponent,
+  },
+  data() {
+    return {
+      dataForm: {},
+    };
+  },
+  methods: {
+    handleEmitSubmit: function (dataForm) {
+      this.dataForm = dataForm;
+      let suhu = dataForm.suhu;
+      let convertTo = dataForm.type;
+      console.log(suhu);
+      console.log(convertTo);
+    },
   },
 };
 </script>
