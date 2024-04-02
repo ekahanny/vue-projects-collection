@@ -1,8 +1,8 @@
 <template>
   <div class="row d-flex justify-content-center align-items-center">
-    <div class="col-md-5">
+    <div class="col-md-3">
       <div class="form-group">
-        <label for="suhu" class="mb-2">Suhu:</label>
+        <label for="suhu" class="mb-2">Temperature</label>
         <input
           type="number"
           class="form-control border border-danger"
@@ -13,15 +13,30 @@
         />
       </div>
     </div>
-    <div class="col-md-5">
+    <div class="col-md-3">
       <div class="form-group">
-        <label for="tipe" class="mb-2">Tipe:</label>
+        <label for="tipe" class="mb-2">Convert From</label>
         <select
           class="form-select border border-danger"
           id="tipe"
-          v-model="selectedType"
+          v-model="convertFrom"
         >
-          <option :value="null" selected disabled>Pilih Satuan Suhu...</option>
+          <option :value="null" selected disabled>Select One...</option>
+          <option value="celcius">Celcius</option>
+          <option value="fahrenheit">Fahrenheit</option>
+          <option value="kelvin">Kelvin</option>
+        </select>
+      </div>
+    </div>
+    <div class="col-md-3">
+      <div class="form-group">
+        <label for="tipe" class="mb-2">Convert To</label>
+        <select
+          class="form-select border border-danger"
+          id="tipe"
+          v-model="convertTo"
+        >
+          <option :value="null" selected disabled>Select One...</option>
           <option value="celcius">Celcius</option>
           <option value="fahrenheit">Fahrenheit</option>
           <option value="kelvin">Kelvin</option>
@@ -45,13 +60,15 @@ export default {
   data() {
     return {
       suhu: null,
-      selectedType: "",
+      convertFrom: null,
+      convertTo: null,
     };
   },
   methods: {
     submit: function () {
       this.$emit("emitSubmit", {
-        type: this.selectedType,
+        convertFrom: this.convertFrom,
+        convertTo: this.convertTo,
         suhu: this.suhu,
       });
     },
